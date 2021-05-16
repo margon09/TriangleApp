@@ -1,0 +1,7 @@
+{
+  "include": [
+    "*.js",
+    "public/libraries/*.js",
+    "/Users/asta/.vscode/extensions/samplavigne.p5-vscode-1.2.6/p5types/global.d.ts"
+, "public/jsFiles/index.js", "public/jsFiles/triangleWithLinepublic/index.js", "public/sketch.js"  ]
+}

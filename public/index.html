@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title>Triangle Type</title>
+	<link rel="stylesheet" type="text/css" href="./styles/style.css">
+	<script src="./libraries/p5.min.js"></script>
+</head>
+
+<body>
+
+	<div class="container">
+
+		<div class="infoText">
+			<h1>Welcome to the triangle app</h1>
+			<p>Test if the triangle is scalene, equilateral, isosceles, or neither of those. Choose between the three inputs
+				represented by buttons "3 sides", "coordinates" and "angle" of the trianlge.
+			</p>
+		</div>
+
+		<div id="btnsId">
+			<button class="btn active plainSidesBtn" id="btn1" onclick="hideDefault()">3 sides</button>
+			<button class="btn coordinates" id="btn2" onclick="hideCoordinates()">coordinates</button>
+			<button class="btn sidesBtn" id="btn3" onclick="hideSides()">angle</button>
+		</div>
+
+		<div class="content">
+			<div class="drawing" id="p5sketch"></div>
+			<div class="inputs">
+				<div class="hiddenContent">
+					<h2>Triangle with three given sides</h2>
+					<p>Insert the three sides of the triangle. By default, there is one joint point coordinates of sides A and C.
+						There should be two intersection points of the circles (radiuses/triangle sides) to construct the triangle.
+						E.g. try to insert
+						60 into
+						side B, leaving other default coordinates.
+					</p>
+					<form action="/">
+						<label for="fname">side A</label><br>
+						<input type="number" id="sideA1" placeholder="e.g.119.9" min="0" max="300" value="119.9" step="0.01"
+							required>
+						<span class="validity"></span>
+						<br>
+
+						<label for="lname">side B</label><br>
+						<input type="number" id="sideB1" placeholder="e.g.80" min="0" max="300" value="80" step="0.01" required>
+						<span class="validity"></span>
+						<br>
+
+						<label for="lname">side C</label><br>
+						<input type="number" id="sideC1" placeholder="e.g.120" min="0" max="300" value="180" step="0.01" required>
+						<span class="validity"></span>
+					</form>
+					<button class="calcBtn" onclick="getCurrentSidesValue()">Calculate</button>
+				</div>
+
+
+				<div class="points" style="display: none;">
+					<h2>Triangle with known sides coordinates</h2>
+					<p class="pointsParagraph">Insert your own triangle values for the points position x and y</p>
+
+					<form action="/">
+						<label for="fname">point A (x, y)</label><br>
+						<input type="number" id="side1_posX" placeholder="e.g.40" min="0" max="300" value="50" step="0.01" required>
+						<span class="validity"></span>
+
+						<input type="number" id="side1_posY" placeholder="e.g.40" min="0" max="300" value="200" step="0.01"
+							required>
+						<span class="validity"></span>
+						<br>
+
+						<label for="lname">point B (x, y)</label><br>
+						<input type="number" id="side2_posX" placeholder="e.g.40" min="0" max="300" value="270.9" step="0.01"
+							required>
+						<span class="validity"></span>
+						<input type="number" id="side2_posY" placeholder="e.g.120" min="0" max="300" value="280" step="0.01"
+							required>
+						<span class="validity"></span>
+						<br>
+
+						<label for="lname">point C (x, y)</label><br>
+						<input type="number" id="side3_posX" placeholder="e.g.160" min="0" max="300" value="200" step="0.01"
+							required>
+						<span class="validity"></span>
+						<input type="number" id="side3_posY" placeholder="e.g.140" min="0" max="300" value="50.5" step="0.01"
+							required>
+						<span class="validity"></span>
+					</form>
+					<button class="calcBtn" onclick="getCurrentPointsValue()">Calculate</button>
+				</div>
+
+				<div class="sides" style="display: none;">
+					<h2>Triangle with two given sides and the angle between them</h2>
+					<p>Insert the two sides and the angle value. In order to construct the triangle cosine angle
+						between side B and C will be calculated and the third side drawn.</p>
+					<form action="/">
+						<label for="fname">side B</label><br>
+						<input type="number" id="sideB" placeholder="e.g.119.9" min="0" max="300" value="180" step="0.01" required>
+						<span class="validity"></span>
+						<br>
+						<label for="lname">side C</label><br>
+						<input type="number" id="sideC" placeholder="e.g.120" min="0" max="300" value="180" step="0.01" required>
+						<span class="validity"></span>
+						<br>
+						<label for="lname">cos β</label><br>
+						<input type="number" id="angle" placeholder="e.g.80" min="0" max="360" value="70" required>
+						<span class="validity"></span>
+					</form>
+					<button class="calcBtn" id="myAngleBtn" onclick="getTwoSidesAndAngleValue()">Calculate
+						and draw triangle</button>
+				</div>
+
+			</div>
+		</div>
+
+		<div class="answer">
+			<h2 id="txtValue">triangle type...</h2>
+		</div>
+
+	</div>
+
+	<script defer src="triangleWithLines.js"></script>
+	<script defer src="triangleWithPoints.js"></script>
+	<script defer src="triangleWithTwoLines.js"></script>
+	<script defer src="index.js"></script>
+	<script defer src="sketch.js"></script>
+</body>
+
+</html>
