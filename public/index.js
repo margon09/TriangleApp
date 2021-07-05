@@ -1,4 +1,5 @@
 let exists = false
+
 function calculateSide(a, b, c) {
 	if (a <= b + c && b <= a + c && c <= a + b) {
 		exists = true
@@ -30,32 +31,57 @@ function getCurrentSidesValue() {
 	)
 }
 
+isValidPoints = (x1, y1, x2, y2, x3, y3) => {
+	console.log(x1, x2, x3, y1, y2, y3);
+	//same X for all points
+	if (x1 === x2 && x2 === x3)
+		return false
+	//same Y for all points
+	if (y1 === y2 && y2 === y3)
+		return false
+	//2 or more points are the same
+	if ((x1 === x2 && y1 === y2) || (x2 === x3 && y2 === y3) || (x3 === x1 && y3 === y1))
+		return false
+	//all points are on the same diagonal
+	if ((x1 - x2) / (y1 - y2) === (x2 - x3) / (y2 - y3))
+		return false
+	return true
+}
+
 function getCurrentPointsValue() {
-	let posX1 = document.getElementById('side1_posX')
-	let posY1 = document.getElementById('side1_posY')
-	let posX2 = document.getElementById('side2_posX')
-	let posY2 = document.getElementById('side2_posY')
-	let posX3 = document.getElementById('side3_posX')
-	let posY3 = document.getElementById('side3_posY')
+	let posX1 = document.getElementById('side1_posX').value
+	let posY1 = document.getElementById('side1_posY').value
+	let posX2 = document.getElementById('side2_posX').value
+	let posY2 = document.getElementById('side2_posY').value
+	let posX3 = document.getElementById('side3_posX').value
+	let posY3 = document.getElementById('side3_posY').value
 
-	let A = Math.sqrt(
-		Math.pow(Number(posX2.value - posX1.value), 2) +
-			Math.pow(Number(posY2.value - posY1.value), 2)
-	)
-	//console.log('side A ', A)
+	if (isValidPoints(posX1, posY1, posX2, posY2, posX3, posY3)) {
 
-	let B = Math.sqrt(
-		Math.pow(Number(posX3.value - posX2.value), 2) +
-			Math.pow(Number(posY3.value - posY3.value), 2)
-	)
-	//console.log('side B ', B)
+		let A = Math.sqrt(
+			Math.pow(Number(posX2 - posX1), 2) +
+			Math.pow(Number(posY2 - posY1), 2)
+		)
+		//console.log('side A ', A)
 
-	let C = Math.sqrt(
-		Math.pow(Number(posX3.value - posX1.value), 2) +
-			Math.pow(Number(posY3.value - posY1.value), 2)
-	)
-	//console.log('side C ', C)
-	calculateSide(A, B, C)
+		let B = Math.sqrt(
+			Math.pow(Number(posX3 - posX2), 2) +
+			Math.pow(Number(posY3 - posY3), 2)
+		)
+		//console.log('side B ', B)
+
+		let C = Math.sqrt(
+			Math.pow(Number(posX3 - posX1), 2) +
+			Math.pow(Number(posY3 - posY1), 2)
+		)
+		//console.log('side C ', C)
+		calculateSide(A, B, C)
+	} else {
+		exists = false
+		document.getElementById('txtValue').style.color = 'red'
+		document.getElementById('txtValue').innerHTML =
+			'this triangle does not exist, choose other points'
+	}
 }
 
 function getTwoSidesAndAngleValue() {
@@ -69,8 +95,8 @@ function getTwoSidesAndAngleValue() {
 
 	let sideA = Math.sqrt(
 		Math.pow(sideB, 2) +
-			Math.pow(sideC, 2) -
-			2 * sideB * sideC * Math.cos((angleBC * Math.PI) / 180) //  * Math.PI / 180 => to radians
+		Math.pow(sideC, 2) -
+		2 * sideB * sideC * Math.cos((angleBC * Math.PI) / 180) //  * Math.PI / 180 => to radians
 	)
 	calculateSide(Number(sideA), Number(sideB), Number(sideC))
 }
@@ -92,6 +118,7 @@ function hideDefault() {
 	}
 	//console.log('hideDefault')
 }
+
 function hideCoordinates() {
 	if (y.style.display === 'none') {
 		y.style.display = 'block'
@@ -100,6 +127,7 @@ function hideCoordinates() {
 	}
 	//console.log('hideCoordinates')
 }
+
 function hideSides() {
 	if (z.style.display === 'none') {
 		z.style.display = 'block'
