@@ -18,15 +18,22 @@ class TriangleWithLines {
 		this.posX = 120
 		this.posY = 200
 
+		// for the text
+		this.half = 2
+		this.tilpas = 7
+
+		// circle radius
+		this.circleRadius = 10
+
 		this.circle1 = {
 			stroke: this.p.stroke(255),
-			diameter: this.radiusSideA * 2,
+			diameter: this.radiusSideA * this.half,
 			posX: this.posX,
 			posY: this.posY
 		}
 		this.circle2 = {
 			stroke: this.p.stroke(255),
-			diameter: this.radiusSideB * 2,
+			diameter: this.radiusSideB * this.half,
 			posX: this.posX + Number(this.radiusSideC),
 			posY: this.posY
 		}
@@ -47,8 +54,8 @@ class TriangleWithLines {
 		//this.p.noStroke()
 		this.p.stroke(255, 0, 0)
 		this.p.fill(25, 55, 50, 80)
-		this.p.circle(this.circle1.posX, this.circle1.posY, 10)
-		this.p.circle(this.circle2.posX, this.circle2.posY, 10)
+		this.p.circle(this.circle1.posX, this.circle1.posY, this.circleRadius)
+		this.p.circle(this.circle2.posX, this.circle2.posY, this.circleRadius)
 
 		// side C
 		this.p.stroke(2)
@@ -65,8 +72,8 @@ class TriangleWithLines {
 
 		let circleB = this.circle2
 
-		let radiusA = this.circle1.diameter / 2
-		let radiusB = this.circle2.diameter / 2
+		let radiusA = this.circle1.diameter / this.half
+		let radiusB = this.circle2.diameter / this.half
 
 		let dx = circleB.posX - circleA.posX
 		let dy = circleB.posY - circleA.posY
@@ -110,8 +117,8 @@ class TriangleWithLines {
 		this.p.fill('#666677')
 		this.p.stroke(255)
 		this.p.strokeWeight(1)
-		this.p.circle(this.pointOneX, this.pointOneY, 10) // top circle intersection point
-		this.p.circle(this.pointTwoX, this.pointTwoY, 10) // bottom circle intersection point
+		this.p.circle(this.pointOneX, this.pointOneY, this.circleRadius) // top circle intersection point
+		this.p.circle(this.pointTwoX, this.pointTwoY, this.circleRadius) // bottom circle intersection point
 
 		// drawing triangle
 		this.p.fill('#0da7bb')
@@ -131,18 +138,18 @@ class TriangleWithLines {
 		this.p.fill(0)
 		this.p.text(
 			'B',
-			(this.pointOneX + this.circle2.posX) / 2,
-			(this.pointOneY + this.circle2.posY) / 2
+			(this.pointOneX + this.circle2.posX) / this.half,
+			(this.pointOneY + this.circle2.posY) / this.half
 		)
 		this.p.text(
 			'A',
-			(myCircle.posX + this.pointOneX) / 2 - 7,
-			(myCircle.posY + this.pointOneY) / 2
+			(myCircle.posX + this.pointOneX) / this.half - this.tilpas,
+			(myCircle.posY + this.pointOneY) / this.half
 		)
 		this.p.text(
 			'C',
-			(myCircle.posX + this.circle2.posX) / 2,
-			(myCircle.posY + this.circle2.posY) / 2
+			(myCircle.posX + this.circle2.posX) / this.half,
+			(myCircle.posY + this.circle2.posY) / this.half
 		)
 	}
 
